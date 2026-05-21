@@ -2,21 +2,20 @@ const express = require('express')
 const router = express.Router()
 const catchAsync = require('../utils/catchAsync.js')
 const User = require('../models/user.js')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+const { isLoggedIn, storeReturnTo } = require('../middleware.js')
+const users = require('../controllers/users.js')
 
-router.get('/register', (req, res) => {
-    res.render('users/register')
-})
-router.post('/register', catchAsync(async (req, res) => {
-    try {
-        const { email, username, password } = req.body
-        const user = new User({ email, username })
-        const registeredUser = await User.register(user, password)
-        req.flash('success', 'Welcome to YelpCamp!')
-        res.redirect('/campgrounds')
-    } catch (e) {
-        req.flash('error', e.message)
-        res.redirect('/register')
-    }
-}))
+
+router.route('/register')
+    .get(users.renderReg)
+    .post(catchAsync(users.Reg))
+
+router.route('/login')
+    .get(users.renderLogin)
+    .post(storeReturnTo, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), users.login)
+
+router.get('/logout', users.logout)
 
 module.exports = router
