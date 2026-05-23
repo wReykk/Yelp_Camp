@@ -48,9 +48,6 @@
                         </form>
                     </div>
                     <% } %>
-                        <div class="card-footer text-muted">
-                            Created 2 days ago
-                        </div>
             </div>
 
         </div>
@@ -113,13 +110,10 @@
         </div>
     </div>
 
-
-    <!-- 1. Кладем JSON в невидимый блок данных -->
     <script type="application/json" id="campground-data">
     <%- JSON.stringify(camps) %>
 </script>
 
-    <!-- 2. Достаем данные в обычном скрипте -->
     <script>
         const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
         const campground = JSON.parse(document.getElementById('campground-data').textContent);
