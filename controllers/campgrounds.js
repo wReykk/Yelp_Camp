@@ -71,7 +71,7 @@ module.exports.editCamp = async (req, res) => {
         req.flash('error', 'Could not geocode that location. Please try again and enter a valid location.');
         return res.redirect(`/campgrounds/${id}/edit`);
     }
-    const camps = await Campground.findByIdAndUpdate(id, req.body, { runValidators: true, returnDocument: 'after' })
+    const camps = await Campground.findByIdAndUpdate(id, { ...req.body.campground }, { runValidators: true, new: true })
     camps.geometry = geoData.features[0].geometry
     camps.location = geoData.features[0].place_name
     const imgs = req.files.map(f => ({ url: f.secure_url, filename: f.public_id }))

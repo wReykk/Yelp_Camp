@@ -8,21 +8,18 @@
 
                 <div class="my-3">
                     <label for="title" class="form-label">Name Campground</label>
-                    <!-- ИСПРАВЛЕНО: name="campground[title]" -->
                     <input type="text" name="campground[title]" id="title" class="form-control"
                         value="<%= camps.title %>" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="location" class="form-label">Location Campground</label>
-                    <!-- ИСПРАВЛЕНО: name="campground[location]" -->
                     <input type="text" name="campground[location]" id="location" class="form-control"
                         value="<%= camps.location %>" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="image" class="form-label">Image Campground</label>
-                    <!-- Оставлено без изменений: multer сам перехватывает "image" -->
                     <input class="form-control" type="file" id="image" name="image" multiple>
                 </div>
 
@@ -30,7 +27,6 @@
                     <label for="price" class="form-label">Price Campground</label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">$</span>
-                        <!-- ИСПРАВЛЕНО: name="campground[price]" -->
                         <input type="text" class="form-control" placeholder="0.00" aria-label="Price" id="price"
                             name="campground[price]" aria-describedby="price-label" value="<%= camps.price %>" required>
                     </div>
@@ -38,7 +34,6 @@
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Description Campground</label>
-                    <!-- ИСПРАВЛЕНО: name="campground[description]" и опечатка в ID -->
                     <textarea name="campground[description]" id="description" class="form-control"
                         required><%= camps.description %></textarea>
                 </div>

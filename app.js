@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'public'))) //learn
 app.use(mongoSanitize());
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl1,
+    mongoUrl: dbUrl2,
     touchAfter: 24 * 60 * 60,
     crypto: {
         secret: 'secret'
