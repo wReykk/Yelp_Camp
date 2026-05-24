@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync.js')
 const User = require('../models/user.js')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
-const { isLoggedIn, storeReturnTo } = require('../middleware.js')
+const { isLoggedIn, storeReturnTo } = require('../middlewares.js')
 const users = require('../controllers/users.js')
 
 
