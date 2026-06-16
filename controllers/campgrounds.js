@@ -10,7 +10,7 @@ const maptilerClient = require("@maptiler/client");
 maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.index = async (req, res) => {
-    const camps = await Campground.find({})
+    const camps = await Campground.find({}).populate('reviews')
     res.render('campgrounds/index', { camps })
 }
 
