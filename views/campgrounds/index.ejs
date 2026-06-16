@@ -1,46 +1,55 @@
 <% layout('layouts/boilerplate') %>
 
-    <div id="map" class="full-width-container map-offset" style="height: 500px;"></div>
+    <div class="container-fluid px-0">
+        <div class="row mx-0">
+            <div class="col-md-8 px-0">
+                <div id="map" class="w-100" style="height: 100vh; position: sticky; top: 0;"></div>
+            </div>
 
-    <h1 class="text-center campgrounds-heading mb-5">All Campgrounds</h1>
+            <div class="col-md-4 overflow-auto px-4" style="height: 100vh;">
+                <!-- <h1 class="text-center campgrounds-heading my-4">All Campgrounds</h1> -->
+                <br>
+                <div class="row row-cols-1 g-4 mb-5">
+                    <% for(let camp of camps) { %>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0 campground-card"
+                                data-lng="<%= camp.geometry.coordinates[0] %>"
+                                data-lat="<%= camp.geometry.coordinates[1] %>" data-id="<%= camp._id %>"
+                                style="cursor: pointer; transition: all 0.3s ease;">
 
-    <div class="full-width-container">
+                                <% if(camp.images && camp.images.length) { %>
+                                    <img src="<%= camp.images[0].url %>" class="card-img-top" alt="<%= camp.title %>"
+                                        style="height: 320px; object-fit: cover;">
+                                    <% } else { %>
+                                        <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800&h=300&fit=crop"
+                                            class="card-img-top" alt="default camp"
+                                            style="height: 320px; object-fit: cover;">
+                                        <% } %>
 
-        <div class="row row-cols-1 row-cols-md-3 g-4 px-4 mx-0 mb-5">
-            <% for(let camp of camps) { %>
-                <div class="col">
-                    <div class="card h-100 shadow-sm border-0 campground-card">
-
-                        <% if(camp.images && camp.images.length) { %>
-                            <img src="<%= camp.images[0].url %>" class="card-img-top" alt="<%= camp.title %>"
-                                style="height: 300px; object-fit: cover;">
-                            <% } else { %>
-                                <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800&h=300&fit=crop"
-                                    class="card-img-top" alt="default camp" style="height: 300px; object-fit: cover;">
-                                <% } %>
-
-                                    <div class="card-body">
-                                        <h5 class="card-title mb-3">
-                                            <a href="/campgrounds/<%= camp._id %>"
-                                                class="text-decoration-none campground-title-link">
-                                                <b>
-                                                    <%= camp.title %>
-                                                </b>
-                                            </a>
-                                        </h5>
-                                        <h6 class="text-muted"><b>location:</b>
-                                            <%= camp.location %>
-                                        </h6>
-                                        <h6><b>price:</b> <span class="text-success">
-                                                <%= camp.price %>$
-                                            </span> per night</h6>
-                                        <p class="card-text mt-3">
-                                            <%= camp.description %>
-                                        </p>
-                                    </div>
-                    </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-3">
+                                                    <a href="/campgrounds/<%= camp._id %>"
+                                                        class="text-decoration-none campground-title-link">
+                                                        <b>
+                                                            <%= camp.title %>
+                                                        </b>
+                                                    </a>
+                                                </h5>
+                                                <h6 class="text-muted"><b>location:</b>
+                                                    <%= camp.location %>
+                                                </h6>
+                                                <h6><b>price:</b> <span class="text-success">
+                                                        <%= camp.price %>$
+                                                    </span> per night</h6>
+                                                <p class="card-text mt-3 text-truncate" style="max-height: 3rem;">
+                                                    <%= camp.description %>
+                                                </p>
+                                            </div>
+                            </div>
+                        </div>
+                        <% } %>
                 </div>
-                <% } %>
+            </div>
         </div>
     </div>
 
@@ -48,12 +57,49 @@
         const maptilerApiKey = "<%- process.env.MAPTILER_API_KEY %>";
             const camps = {
             type: "FeatureCollection",
-            features: <%- JSON.stringify( camps.map(camp=> ({
+            features: <%- JSON.stringify(camps.map(camp=> ({
                 type: "Feature",
                 geometry: camp.geometry,
-                properties: { popUpMarkup: camp?.properties?.popUpMarkup }
+                properties: {
+                popUpMarkup: camp?.properties?.popUpMarkup,
+                id: camp._id
+                }
                 }))) %>
                 };
                 <%- "</script>" %>
 
                     <script src="/js/clusterMap.js"></script>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const cards = document.querySelectorAll('.campground-card');
+
+                            cards.forEach(card => {
+                                card.addEventListener('mouseenter', function () {
+                                    this.style.transform = 'scale(1.02)';
+
+                                    const lng = parseFloat(this.getAttribute('data-lng'));
+                                    const lat = parseFloat(this.getAttribute('data-lat'));
+
+                                    if (!isNaN(lng) && !isNaN(lat) && typeof map !== 'undefined') {
+                                        map.flyTo({
+                                            center: [lng, lat],
+                                            zoom: 11,
+                                            essential: true
+                                        });
+                                    }
+                                });
+
+                                card.addEventListener('mouseleave', function () {
+                                    this.style.transform = 'scale(1)';
+                                });
+
+                                card.addEventListener('click', function () {
+                                    const campId = this.getAttribute('data-id');
+                                    if (campId) {
+                                        window.location.href = '/campgrounds/' + campId;
+                                    }
+                                });
+                            });
+                        });
+                    </script>

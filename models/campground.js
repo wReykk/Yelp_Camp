@@ -45,9 +45,23 @@ const CampgroundSchema = new Schema({
 }, opts)
 
 CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
+    const imageUrl = this.images && this.images.length
+        ? this.images[0].url
+        : 'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=800&h=300&fit=crop';
     return `
-    <strong><a href="/campgrounds/${this._id}">${this.title}</a></strong>
-    <p>${this.description.substring(0, 20)}...</p>`
+    <div style="width: 350px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.25);">
+        <img src="${imageUrl}" style="height: 250px; object-fit: cover; width: 100%;" alt="${this.title}">
+        <div style="padding: 16px; background: white;">
+            <h5 style="margin: 0 0 12px 0;">
+                <a href="/campgrounds/${this._id}" style="text-decoration: none; color: #000000; font-weight: bold; font-size: 1.1rem;">
+                    ${this.title}
+                </a>
+            </h5>
+            <h6 style="margin: 6px 0; color: #333; font-size: 0.95rem;"><b>Location:</b> ${this.location}</h6>
+            <h6 style="margin: 6px 0 12px 0; color: #333; font-weight: bold; font-size: 0.95rem;"><b>Price:</b> <span style="color: #5fb586;">${this.price}$</span> per night</h6>
+            <p style="margin: 0; color: #555; font-size: 0.9rem; line-height: 1.5;">${this.description.substring(0, 120)}...</p>
+        </div>
+    </div>`
 });
 
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
