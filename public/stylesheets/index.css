@@ -5,35 +5,6 @@ body {
     color: #5745309a !important;
 }
 
-/* .navbar,
-footer {
-    background: linear-gradient(135deg, #1b3d2d 0%, #2d5a47 100%) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    border-bottom: 2px solid #3d7a5e;
-}
-
-.navbar-nav .nav-link {
-    color: #b0d4c1 !important;
-    transition: all 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #5fb586 !important;
-    text-shadow: 0 0 10px rgba(95, 181, 134, 0.5);
-}
-
-footer,
-footer span,
-footer a {
-    color: #b0d4c1 !important;
-}
-
-footer a:hover {
-    color: #5fb586 !important;
-} */
-
 .campgrounds-heading {
     font-weight: 800;
     text-transform: uppercase;
@@ -104,7 +75,6 @@ footer a:hover {
     margin-bottom: 2rem;
 }
 
-/* Dodatkowe style dla temnego dyzajnu */
 .btn-primary {
     background-color: #3d7a5e !important;
     border-color: #5fb586 !important;

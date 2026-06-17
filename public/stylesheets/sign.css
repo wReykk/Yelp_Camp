@@ -6,10 +6,8 @@
      height: 100%;
      min-height: 80vh;
      position: relative;
-     /* Кнопка "Назад" буде орієнтуватись на цей контейнер */
  }
 
- /* Винесена кнопка "Назад" */
  .back-btn-outside {
      position: absolute;
      top: 1.5rem;
@@ -42,7 +40,6 @@
      overflow: hidden;
  }
 
- /* ФІКС: Примусово робимо поля вводу білими (перевизначаємо твій index.css) */
  .auth-card .form-control {
      background-color: #ffffff !important;
      color: #212529 !important;
@@ -54,7 +51,6 @@
      box-shadow: 0 0 0 0.25rem rgba(95, 181, 134, 0.25) !important;
  }
 
- /* Налаштування каруселі */
  .carousel,
  .carousel-inner,
  .carousel-item {
@@ -71,14 +67,12 @@
      transition: opacity 0.3s ease-in-out;
  }
 
- /* ФІКС: Прозорий фон тексту з тінню для читабельності */
  .carousel-caption {
      top: 3rem;
      bottom: auto;
      text-align: left;
      background: transparent !important;
      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-     /* Тінь не дасть тексту злитись з фоном */
  }
 
  .form-padding {

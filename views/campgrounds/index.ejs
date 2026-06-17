@@ -2,12 +2,12 @@
 
     <div class="container-fluid px-0">
         <div class="row mx-0">
-            <div class="col-md-8 px-0">
+
+            <div class="col-md-8 px-0 d-none d-md-block">
                 <div id="map" class="w-100" style="height: 100vh; position: sticky; top: 0;"></div>
             </div>
 
-            <div class="col-md-4 overflow-auto px-4" style="height: 100vh;">
-                <!-- <h1 class="text-center campgrounds-heading my-4">All Campgrounds</h1> -->
+            <div class="col-md-4 overflow-auto px-2 px-md-4" style="height: 100vh;">
                 <br>
                 <div class="row row-cols-1 g-4 mb-5">
                     <% for(let camp of camps) { %>
@@ -66,53 +66,59 @@
         </div>
     </div>
 
-    <%- "<script>" %>
+    <script type="application/json" id="campgrounds-data">
+    <%- JSON.stringify(camps.map(camp => ({
+        type: "Feature",
+        geometry: camp.geometry,
+        properties: {
+            popUpMarkup: camp?.properties?.popUpMarkup,
+            id: camp._id
+        }
+    }))) %>
+</script>
+
+    <script>
         const maptilerApiKey = "<%- process.env.MAPTILER_API_KEY %>";
-            const camps = {
+        const parsedFeatures = JSON.parse(document.getElementById('campgrounds-data').textContent);
+
+        const camps = {
             type: "FeatureCollection",
-            features: <%- JSON.stringify(camps.map(camp=> ({
-                type: "Feature",
-                geometry: camp.geometry,
-                properties: {
-                popUpMarkup: camp?.properties?.popUpMarkup,
-                id: camp._id
-                }
-                }))) %>
-                };
-                <%- "</script>" %>
+            features: parsedFeatures
+        };
+    </script>
 
-                    <script src="/js/clusterMap.js"></script>
+    <script src="/js/clusterMap.js"></script>
 
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            const cards = document.querySelectorAll('.campground-card');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.campground-card');
 
-                            cards.forEach(card => {
-                                card.addEventListener('mouseenter', function () {
-                                    this.style.transform = 'scale(1.02)';
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'scale(1.02)';
 
-                                    const lng = parseFloat(this.getAttribute('data-lng'));
-                                    const lat = parseFloat(this.getAttribute('data-lat'));
+                    const lng = parseFloat(this.getAttribute('data-lng'));
+                    const lat = parseFloat(this.getAttribute('data-lat'));
 
-                                    if (!isNaN(lng) && !isNaN(lat) && typeof map !== 'undefined') {
-                                        map.flyTo({
-                                            center: [lng, lat],
-                                            zoom: 11,
-                                            essential: true
-                                        });
-                                    }
-                                });
-
-                                card.addEventListener('mouseleave', function () {
-                                    this.style.transform = 'scale(1)';
-                                });
-
-                                card.addEventListener('click', function () {
-                                    const campId = this.getAttribute('data-id');
-                                    if (campId) {
-                                        window.location.href = '/campgrounds/' + campId;
-                                    }
-                                });
-                            });
+                    if (!isNaN(lng) && !isNaN(lat) && typeof map !== 'undefined') {
+                        map.flyTo({
+                            center: [lng, lat],
+                            zoom: 11,
+                            essential: true
                         });
-                    </script>
+                    }
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'scale(1)';
+                });
+
+                card.addEventListener('click', function () {
+                    const campId = this.getAttribute('data-id');
+                    if (campId) {
+                        window.location.href = '/campgrounds/' + campId;
+                    }
+                });
+            });
+        });
+    </script>

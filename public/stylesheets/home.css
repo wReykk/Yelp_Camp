@@ -8,11 +8,25 @@ body {
 }
 
 .cover-container {
-    max-width: 60vw;
+    max-width: 100%;
+}
+
+h1 {
+    color: #5fb586 !important;
+    text-shadow: 0 0 20px rgba(95, 181, 134, 0.4);
 }
 
 #yelp-camp {
-    transform: translateX(4px);
+    font-size: 3.5rem;
+}
+
+.lead {
+    color: #b0d4c1 !important;
+}
+
+.hero-text {
+    font-size: 1.15rem;
+    line-height: 1.6;
 }
 
 .nav-link {
@@ -24,12 +38,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.nav-link:hover {
-    color: #5fb586;
-    border-bottom-color: #5fb586;
-    text-shadow: 0 0 10px rgba(95, 181, 134, 0.5);
-}
-
+.nav-link:hover,
 .nav-link.active {
     color: #5fb586;
     border-bottom-color: #5fb586;
@@ -51,11 +60,30 @@ body {
     box-shadow: 0 0 20px rgba(95, 181, 134, 0.5);
 }
 
-h1 {
-    color: #5fb586 !important;
-    text-shadow: 0 0 20px rgba(95, 181, 134, 0.4);
+.custom-btn-pill {
+    border-radius: 50px;
+    font-size: 1.1rem;
 }
 
-.lead {
-    color: #b0d4c1 !important;
+.main-content-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .cover-container {
+        max-width: 60vw;
+    }
+
+    #yelp-camp {
+        font-size: 5.5rem;
+    }
+
+    .hero-text {
+        font-size: 1.5rem;
+    }
+
+    .custom-btn-pill {
+        font-size: 1.25rem;
+    }
 }

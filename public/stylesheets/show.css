@@ -1,12 +1,13 @@
 .campground-details-section {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
     margin-bottom: 3rem;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .campground-info {
-    flex: 0 0 33.333%;
+    order: 2;
     padding: 1.5rem;
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -17,9 +18,9 @@
 }
 
 .campground-images {
-    flex: 0 0 66.667%;
+    order: 1;
     position: relative;
-    padding-right: 1.5rem;
+    width: 100%;
 }
 
 .carousel-container {
@@ -31,20 +32,20 @@
 
 .carousel-images {
     width: 100%;
-    height: auto;
+    height: 300px;
+    object-fit: cover;
 }
 
 .map-container {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    width: 250px;
-    height: 250px;
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-top: 1rem;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border: none;
     cursor: grab;
 }
 
@@ -91,6 +92,12 @@
     margin-top: 0.3rem;
 }
 
+.price-highlight {
+    font-size: 1.5rem;
+    color: #5fb586;
+    font-weight: 600;
+}
+
 .rating-display {
     font-size: 2rem;
     color: #5fb586;
@@ -102,7 +109,6 @@
     color: #888;
     font-size: 0.9rem;
     margin-left: 10px;
-    /* text-decoration: none; */
     transition: all 0.3s ease;
     display: inline-block;
 }
@@ -122,8 +128,8 @@
     margin-top: auto;
     padding-top: 1.5rem;
     display: flex;
+    flex-direction: column;
     gap: 0.75rem;
-    justify-content: flex-end;
     border-top: 1px solid rgba(95, 181, 134, 0.2);
 }
 
@@ -134,6 +140,7 @@
 .action-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     padding: 0.6rem 1.2rem;
     border-radius: 6px;
@@ -200,9 +207,9 @@
 
 .comments-section {
     background-color: #f8f9fa;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 8px;
-    margin: 0 2rem 2rem 2rem;
+    margin: 0 1rem 2rem 1rem;
 }
 
 .comments-heading {
@@ -251,12 +258,13 @@
 }
 
 .go-back-button {
-    display: inline-block;
+    display: block;
     margin-top: 2rem;
     text-align: center;
 }
 
 .go-back-button a {
+    display: inline-block;
     color: white;
     background-color: #5fb586;
     padding: 0.75rem 1.5rem;
@@ -268,4 +276,47 @@
 .go-back-button a:hover {
     background-color: #3d7a5e;
     text-decoration: none;
+}
+
+@media (min-width: 992px) {
+    .campground-details-section {
+        grid-template-columns: 1fr 2fr;
+        padding: 2rem;
+    }
+
+    .campground-info {
+        order: 1;
+    }
+
+    .campground-images {
+        order: 2;
+        padding-right: 1.5rem;
+    }
+
+    .carousel-images {
+        height: auto;
+        min-height: 500px;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .map-container {
+        position: absolute;
+        bottom: 1rem;
+        right: 2.5rem;
+        width: 250px;
+        height: 250px;
+        margin-top: 0;
+        border: 3px solid white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+
+    .comments-section {
+        padding: 2rem;
+        margin: 0 2rem 2rem 2rem;
+    }
 }

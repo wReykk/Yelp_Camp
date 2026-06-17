@@ -2,9 +2,8 @@
     <link rel="stylesheet" href="/stylesheets/stars.css">
     <link rel="stylesheet" href="/stylesheets/show.css">
 
-    <!-- Main Campground Details Section -->
     <div class="campground-details-section">
-        <!-- Left: Campground Info (1/3) -->
+
         <div class="campground-info">
             <div class="info-title-container">
                 <h1 class="info-title">
@@ -26,7 +25,7 @@
 
             <div class="info-item">
                 <div class="info-label">Price per night</div>
-                <div class="info-value" style="font-size: 1.5rem; color: #5fb586;">$<%= camps.price%>
+                <div class="info-value price-highlight">$<%= camps.price%>
                 </div>
             </div>
 
@@ -35,13 +34,10 @@
                 <% const rating=Math.round(camps.averageRating * 2) / 2; const fullStars=Math.floor(rating); const
                     hasHalf=(rating % 1)>= 0.5;
                     const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
-                    const displayRating = Math.round(rating);
                     %>
                     <div class="rating-display">
                         <%= '★' .repeat(fullStars) %>
-                            <!-- <% if(hasHalf) { %>◑<% } %> -->
                             <%= '☆' .repeat(emptyStars) %>
-
                                 <a href="#comments-section" class="review-count">
                                     (<%= camps.reviews.length %> review<%= camps.reviews.length !==1 ? 's' : '' %>)
                                 </a>
@@ -57,11 +53,11 @@
 
             <% if(currentUser && camps.author && camps.author.equals(currentUser._id)) { %>
                 <div class="action-buttons">
-                    <a class="action-btn edit-btn" href="/campgrounds/<%=camps._id%>/edit">
+                    <a class="action-btn edit-btn w-100 mb-2 mb-md-0" href="/campgrounds/<%=camps._id%>/edit">
                         <span class="btn-text">Edit</span>
                     </a>
-                    <form class="action-form" action="/campgrounds/<%=camps._id%>?_method=DELETE" method="POST">
-                        <button type="submit" class="action-btn delete-btn">
+                    <form class="action-form w-100" action="/campgrounds/<%=camps._id%>?_method=DELETE" method="POST">
+                        <button type="submit" class="action-btn delete-btn w-100">
                             <span class="btn-text">Delete</span>
                         </button>
                     </form>
@@ -69,7 +65,6 @@
                 <% } %>
         </div>
 
-        <!-- Right: Carousel & Map (2/3) -->
         <div class="campground-images">
             <div class="carousel-container">
                 <div id="CampgroundCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -82,89 +77,106 @@
                     </div>
                     <% if(camps.images.length> 1) { %>
                         <a class="carousel-control-prev" href="#CampgroundCarousel" role="button" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon aria-hidden=" true"></span>
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         </a>
                         <a class="carousel-control-next" href="#CampgroundCarousel" role="button" data-bs-slide="next">
-                            <span class="carousel-control-next-icon aria-hidden=" true"></span>
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         </a>
                         <% } %>
                 </div>
 
-                <!-- Map in bottom right corner -->
                 <div class="map-container" id="map"></div>
             </div>
         </div>
     </div>
 
-    <!-- Comments Section -->
     <div class="comments-section" id="comments-section">
         <h2 class="comments-heading">Comments & Reviews</h2>
 
-        <% if (currentUser) { %>
-            <div class="review-form-container">
-                <h3 class="review-form-heading">Leave a Review</h3>
-                <form action="/campgrounds/<%= camps._id %>/reviews" method="POST" class="validated-form" novalidate>
-                    <div class="mb-3">
-                        <fieldset class="starability-basic">
-                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="3"
-                                checked aria-label="No rating." />
-                            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-                            <label for="first-rate1" title="Terrible">1 star</label>
-                            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-                            <label for="first-rate2" title="Not good">2 stars</label>
-                            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-                            <label for="first-rate3" title="Average">3 stars</label>
-                            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-                            <label for="first-rate4" title="Very good">4 stars</label>
-                            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-                            <label for="first-rate5" title="Amazing">5 stars</label>
-                        </fieldset>
+        <div class="row">
+            <div class="col-12 col-lg-4 mb-4">
+                <% if (currentUser) { %>
+                    <div class="review-form-container">
+                        <h3 class="review-form-heading">Leave a Review</h3>
+                        <form action="/campgrounds/<%= camps._id %>/reviews" method="POST" class="validated-form"
+                            novalidate>
+                            <div class="mb-3">
+                                <fieldset class="starability-basic">
+                                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]"
+                                        value="3" checked aria-label="No rating." />
+                                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                    <label for="first-rate1" title="Terrible">1 star</label>
+                                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                    <label for="first-rate2" title="Not good">2 stars</label>
+                                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                    <label for="first-rate3" title="Average">3 stars</label>
+                                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                    <label for="first-rate4" title="Very good">4 stars</label>
+                                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                    <label for="first-rate5" title="Amazing">5 stars</label>
+                                </fieldset>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="body">Your Review</label>
+                                <textarea class="form-control" name="review[body]" id="body" rows="4"
+                                    required></textarea>
+                                <div class="valid-feedback">Looks Good!</div>
+                            </div>
+                            <button class="btn btn-success w-100">Submit Review</button>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="body">Your Review</label>
-                        <textarea class="form-control" name="review[body]" id="body" required></textarea>
-                        <div class="valid-feedback">
-                            Looks Good!
+                    <% } else { %>
+                        <div class="review-form-container text-center py-5">
+                            <p class="mb-3 text-muted">You must be logged in to leave a review.</p>
+                            <a href="/login" class="btn btn-outline-success">Login</a>
                         </div>
-                    </div>
-                    <button class="btn btn-success">Submit Review</button>
-                </form>
+                        <% } %>
             </div>
-            <% } %>
 
+            <div class="col-12 col-lg-8">
                 <% if(camps.reviews.length> 0) { %>
-                    <div>
+                    <div class="reviews-list">
                         <% for(let review of camps.reviews) {%>
                             <div class="review-card">
-                                <p class="starability-result" data-rating="<%= review.rating %>">
-                                    ⭐ <%= review.rating %> / 5 stars
-                                </p>
-                                <h6 class="review-author">
-                                    <%= review.author ? review.author.username : 'Anonymous' %>
-                                </h6>
-                                <p class="review-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="review-author mb-1">
+                                            <%= review.author ? review.author.username : 'Anonymous' %>
+                                        </h6>
+                                        <p class="starability-result mb-2" data-rating="<%= review.rating %>">
+                                            ⭐ <%= review.rating %> / 5 stars
+                                        </p>
+                                    </div>
+                                    <% if (currentUser && review.author && review.author._id.equals(currentUser._id)) {
+                                        %>
+                                        <form
+                                            action="/campgrounds/<%= camps._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                            method="POST">
+                                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                        <% } %>
+                                </div>
+                                <p class="review-body mb-0">
                                     <%= review.body %>
                                 </p>
-                                <% if (currentUser && review.author && review.author._id.equals(currentUser._id)) { %>
-                                    <form
-                                        action="/campgrounds/<%= camps._id %>/reviews/<%= review._id %>?_method=DELETE"
-                                        method="POST" class="mt-2">
-                                        <button class="btn btn-sm btn-danger">Delete</button>
-                                    </form>
-                                    <% } %>
                             </div>
                             <% } %>
                     </div>
                     <% } else { %>
-                        <p style="color: #888; text-align: center; padding: 2rem;">No reviews yet. Be the first to leave
-                            a review!</p>
+                        <div class="empty-reviews text-center py-5">
+                            <h4 class="text-muted">No reviews yet.</h4>
+                            <p class="text-muted">Be the first to share your experience!</p>
+                        </div>
                         <% } %>
+            </div>
+        </div>
 
-                            <div class="go-back-button">
-                                <a href="#"
-                                    onclick="document.querySelector('.campground-details-section').scrollIntoView({ behavior: 'smooth' }); return false;">↑
-                                    Go Back to Top</a>
-                            </div>
+        <div class="go-back-button">
+            <a href="#"
+                onclick="document.querySelector('.campground-details-section').scrollIntoView({ behavior: 'smooth' }); return false;">
+                ↑ Go Back to Top
+            </a>
+        </div>
     </div>
 
     <script type="application/json" id="campground-data">
