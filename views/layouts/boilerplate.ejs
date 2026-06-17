@@ -10,7 +10,9 @@
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.6.1/maptiler-sdk.css" rel="stylesheet">
     <link rel="stylesheet" href="stylesheets/index.css">
 
-    <title>Boilerplate!</title>
+    <title>
+        <%= typeof pageTitle !=='undefined' ? pageTitle : 'YelpCamp' %>
+    </title>
 </head>
 
 <body class="d-flex flex-column vh-100">
