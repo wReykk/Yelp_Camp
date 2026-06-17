@@ -1,7 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); */
 
 body {
-    background-color: #383333 !important;
+    background-color: #f4f7f6 !important;
     color: #5745309a !important;
 }
 
@@ -46,7 +46,7 @@ footer a:hover {
 .campground-card {
     border-radius: 12px;
     overflow: hidden;
-    background-color: #c9c9c9 !important;
+    background-color: #ffffff !important;
     border: 1px solid #e0e0e0 !important;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);

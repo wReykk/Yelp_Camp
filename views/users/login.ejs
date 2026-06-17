@@ -1,89 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
+    <link rel="stylesheet" href="/stylesheets/sign.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .carousel-item img {
-            object-fit: cover;
-            height: 100vh;
-            width: 100%;
-        }
+    <div class="auth-wrapper">
 
-        .login-wrapper {
-            max-width: 400px;
-            width: 100%;
-        }
-    </style>
-</head>
+        <a href="/" class="back-btn-outside">
+            &larr; Back to Home
+        </a>
 
-<body class="bg-white">
-    <%- include('../partials/navbar') %>
-        <div class="row g-0 vh-100">
+        <div class="auth-card row g-0">
 
-            <div class="col-md-5 col-lg-4 d-flex flex-column justify-content-center align-items-center p-4">
-
-                <a href="/" class="text-decoration-none text-muted mb-5 align-self-start ms-xl-4">
-                    &larr; Back to Home
-                </a>
-
-                <div class="login-wrapper">
-                    <h2 class="mb-4 font-weight-bold">Welcome Back</h2>
-
-                    <form action="/login" class="validated-form" method="POST" novalidate>
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" name="username" id="username" class="form-control form-control-lg"
-                                required autofocus>
-                        </div>
-                        <div class="mb-4">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" id="password" class="form-control form-control-lg"
-                                required>
-                        </div>
-                        <div class="d-grid">
-                            <button class="btn btn-success btn-lg">Login</button>
-                        </div>
-                    </form>
-
-                    <div class="mt-4 text-center">
-                        <p class="text-muted">Don't have an account? <a href="/register"
-                                class="text-success text-decoration-none">Register</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-7 col-lg-8 d-none d-md-block">
-                <div id="campgroundsCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel">
+            <div class="col-md-7 col-lg-8 d-none d-md-block h-100">
+                <div id="campgroundsCarousel" class="carousel slide carousel-fade h-100" data-bs-ride="carousel"
+                    data-bs-interval="3000">
                     <div class="carousel-inner h-100">
 
                         <div class="carousel-item active h-100">
                             <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80"
                                 alt="Campground view">
-                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-4 mb-5 mx-5">
-                                <h3 class="fw-bold">Best website for finding campgrounds</h3>
-                                <p class="fs-5 mb-0">Discover your next great adventure under the stars.</p>
+                            <div class="carousel-caption d-none d-md-block p-4 mx-4">
+                                <h3 class="fw-bold fs-3 text-white">Best website for finding campgrounds</h3>
+                                <p class="fs-5 mb-0 text-white">Discover your next great adventure under the stars.</p>
                             </div>
                         </div>
 
                         <div class="carousel-item h-100">
                             <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80"
                                 alt="Camping tent at night">
-                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-4 mb-5 mx-5">
-                                <h3 class="fw-bold">Explore the wilderness</h3>
-                                <p class="fs-5 mb-0">Connect with nature like never before.</p>
+                            <div class="carousel-caption d-none d-md-block p-4 mx-4">
+                                <h3 class="fw-bold fs-3 text-white">Explore the wilderness</h3>
+                                <p class="fs-5 mb-0 text-white">Connect with nature like never before.</p>
                             </div>
                         </div>
 
                         <div class="carousel-item h-100">
                             <img src="https://images.unsplash.com/photo-1533873984035-25970ab07461?ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80"
                                 alt="Campfire">
-                            <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-4 mb-5 mx-5">
-                                <h3 class="fw-bold">Unforgettable experiences</h3>
-                                <p class="fs-5 mb-0">Share stories by the campfire.</p>
+                            <div class="carousel-caption d-none d-md-block p-4 mx-4">
+                                <h3 class="fw-bold fs-3 text-white">Unforgettable experiences</h3>
+                                <p class="fs-5 mb-0 text-white">Share stories by the campfire.</p>
                             </div>
                         </div>
 
@@ -91,9 +45,32 @@
                 </div>
             </div>
 
-        </div>
-        <%- include('../partials/footer') %>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+            <div class="col-md-5 col-lg-4 d-flex align-items-center justify-content-center h-100 bg-white">
+                <div class="form-padding w-100">
+                    <h2 class="mb-4 fw-bold text-center">Welcome Back</h2>
 
-</html>
+                    <form action="/login" class="validated-form" method="POST" novalidate>
+                        <div class="mb-3">
+                            <label for="username" class="form-label text-muted fw-semibold">Username</label>
+                            <input type="text" name="username" id="username" class="form-control form-control-lg"
+                                required autofocus>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label text-muted fw-semibold">Password</label>
+                            <input type="password" name="password" id="password" class="form-control form-control-lg"
+                                required>
+                        </div>
+                        <div class="d-grid mb-4">
+                            <button class="btn btn-success btn-lg">Sign In</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center">
+                        <p class="text-muted">Don't have an account? <a href="/register"
+                                class="text-success text-decoration-none fw-semibold">Sign Up</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

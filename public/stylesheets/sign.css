@@ -1,0 +1,92 @@
+ .auth-wrapper {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 1rem;
+     height: 100%;
+     min-height: 80vh;
+     position: relative;
+     /* Кнопка "Назад" буде орієнтуватись на цей контейнер */
+ }
+
+ /* Винесена кнопка "Назад" */
+ .back-btn-outside {
+     position: absolute;
+     top: 1.5rem;
+     left: 1.5rem;
+     z-index: 100;
+     background: white;
+     padding: 0.6rem 1.2rem;
+     border-radius: 50px;
+     text-decoration: none;
+     color: #333;
+     font-weight: 600;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+     transition: all 0.3s ease;
+ }
+
+ .back-btn-outside:hover {
+     background: #f8f9fa;
+     color: #194524;
+     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+     transform: translateY(-2px);
+ }
+
+ .auth-card {
+     background: white;
+     width: 100%;
+     max-width: 1600px;
+     height: 100%;
+     border-radius: 24px;
+     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+     overflow: hidden;
+ }
+
+ /* ФІКС: Примусово робимо поля вводу білими (перевизначаємо твій index.css) */
+ .auth-card .form-control {
+     background-color: #ffffff !important;
+     color: #212529 !important;
+     border: 1px solid #ced4da !important;
+ }
+
+ .auth-card .form-control:focus {
+     border-color: #5fb586 !important;
+     box-shadow: 0 0 0 0.25rem rgba(95, 181, 134, 0.25) !important;
+ }
+
+ /* Налаштування каруселі */
+ .carousel,
+ .carousel-inner,
+ .carousel-item {
+     height: 100%;
+ }
+
+ .carousel-item img {
+     object-fit: cover;
+     height: 100%;
+     width: 100%;
+ }
+
+ .carousel-fade .carousel-item {
+     transition: opacity 0.3s ease-in-out;
+ }
+
+ /* ФІКС: Прозорий фон тексту з тінню для читабельності */
+ .carousel-caption {
+     top: 3rem;
+     bottom: auto;
+     text-align: left;
+     background: transparent !important;
+     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+     /* Тінь не дасть тексту злитись з фоном */
+ }
+
+ .form-padding {
+     padding: 2rem;
+ }
+
+ @media (min-width: 992px) {
+     .form-padding {
+         padding: 4rem;
+     }
+ }
