@@ -1,17 +1,22 @@
-<% if (success && success.length) { %>
-    <div class="alert alert-success alert-dismissible fade show" role="alert"
-        style="background-color: #1e4a3d; border-color: #5fb586; color: #5fb586;">
-        <%= success %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                style="filter: brightness(0.8);"></button>
-    </div>
-    <% } %>
+<link rel="stylesheet" href="/stylesheets/flash.css">
+<div class="alert-container">
 
-        <% if (error && error.length) { %>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert"
-                style="background-color: #4a1f1f; border-color: #d67a7a; color: #ff8a8a;">
-                <%= error %>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
-                        style="filter: brightness(1.2);"></button>
-            </div>
-            <% } %>
+    <% if (success && success.length) { %>
+        <div class="alert alert-success alert-dismissible slide-down-fade show" role="alert"
+            style="background-color: #1e4a3d; border-color: #5fb586; color: #5fb586; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            <%= success %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                    style="filter: brightness(0.8);"></button>
+        </div>
+        <% } %>
+
+            <% if (error && error.length) { %>
+                <div class="alert alert-danger alert-dismissible slide-down-fade show" role="alert"
+                    style="background-color: #4a1f1f; border-color: #d67a7a; color: #ff8a8a; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <%= error %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                            style="filter: brightness(1.2);"></button>
+                </div>
+                <% } %>
+
+</div>

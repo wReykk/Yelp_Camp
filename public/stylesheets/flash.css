@@ -1,0 +1,85 @@
+/* Flash Alert Container - Lower Left Corner */
+.alert-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    max-width: 350px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Alert Styling */
+.alert {
+    min-width: 300px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    animation: slideInLeft 0.3s ease-out;
+}
+
+/* Slide In Animation */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Slide Down Fade Animation - When Closing */
+@keyframes slideDownFade {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(400px);
+        opacity: 0;
+    }
+}
+
+/* Apply animation when alert is being dismissed */
+.alert.slide-down-fade {
+    animation: slideDownFade 0.4s ease-in forwards 4s;
+}
+
+/* Close Button Styling */
+.btn-close {
+    flex-shrink: 0;
+    margin-left: 12px !important;
+    margin: 0 !important;
+    transform: translateY(-3px);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .alert-container {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        max-width: none;
+    }
+
+    .alert {
+        min-width: auto;
+        width: 100%;
+    }
+}

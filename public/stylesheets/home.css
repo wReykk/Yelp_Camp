@@ -11,6 +11,10 @@ body {
     max-width: 60vw;
 }
 
+#yelp-camp {
+    transform: translateX(4px);
+}
+
 .nav-link {
     padding: 0.25rem 0;
     font-weight: 700;

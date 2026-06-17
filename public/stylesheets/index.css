@@ -5,7 +5,7 @@ body {
     color: #5745309a !important;
 }
 
-.navbar,
+/* .navbar,
 footer {
     background: linear-gradient(135deg, #1b3d2d 0%, #2d5a47 100%) !important;
     backdrop-filter: blur(10px);
@@ -32,7 +32,7 @@ footer a {
 
 footer a:hover {
     color: #5fb586 !important;
-}
+} */
 
 .campgrounds-heading {
     font-weight: 800;

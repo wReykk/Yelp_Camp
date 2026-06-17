@@ -66,8 +66,9 @@ CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
 
 CampgroundSchema.virtual('averageRating').get(function () {
     if (this.reviews && this.reviews.length > 0) {
-        const totalRating = this.reviews.reduce((sum, review) => sum + (review.rating || 0), 0);
-        return (totalRating / this.reviews.length).toFixed(1);
+        const tRating = this.reviews.reduce((sum, review) => sum + (review.rating || 0), 0);
+        const totalRating = (tRating / this.reviews.length).toFixed(1)
+        return Math.round(totalRating);
     }
     return 0;
 });

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/stylesheets/navbar.css">
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand nav-link active" aria-current="page" href="/">YelpCamp</a>
@@ -19,6 +20,11 @@
                     <a class="nav-link" href="/login">Login</a>
                     <a class="nav-link" href="/register">Register</a>
                     <% } else {%>
+                        <!-- <p class="nav-link">Welcome, <%= currentUser.username %>
+                        </p> -->
+                        <a class="nav-link" href="">Welcome, <b>
+                                <%= currentUser.username %>
+                            </b> </a>
                         <a class="nav-link" href="/logout">Logout</a>
                         <% } %>
 
