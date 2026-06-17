@@ -8,13 +8,16 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.6.1/maptiler-sdk.umd.min.js"></script>
     <link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.6.1/maptiler-sdk.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/index.css">
 
-    <title>Boilerplate!</title>
+    <title>
+        <%= typeof pageTitle !=='undefined' ? pageTitle : 'YelpCamp' %>
+    </title>
 </head>
 
 <body class="d-flex flex-column vh-100">
     <%- include('../partials/navbar') %>
-        <main class="container mt-4">
+        <main class="mt-0" style="width: 100%; flex: 1;">
             <%- include('../partials/flash') %>
                 <%- body %>
         </main>

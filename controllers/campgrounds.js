@@ -10,12 +10,12 @@ const maptilerClient = require("@maptiler/client");
 maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.index = async (req, res) => {
-    const camps = await Campground.find({})
-    res.render('campgrounds/index', { camps })
+    const camps = await Campground.find({}).populate('reviews')
+    res.render('campgrounds/index', { camps, pageTitle: 'All Campgrounds' })
 }
 
 module.exports.renderNewForm = (req, res) => {
-    res.render('campgrounds/create')
+    res.render('campgrounds/create', { pageTitle: 'New Campground' })
 }
 
 module.exports.createCamp = async (req, res) => {
@@ -50,7 +50,7 @@ module.exports.showCamp = async (req, res) => {
         req.flash('error', 'oops! Nothing was found')
         return res.redirect('/campgrounds')
     }
-    res.render('campgrounds/show', { camps })
+    res.render('campgrounds/show', { camps, pageTitle: `${camps.title} campground` })
 }
 
 module.exports.renderEditForm = async (req, res) => {
@@ -60,7 +60,7 @@ module.exports.renderEditForm = async (req, res) => {
         req.flash('error', 'oops! Nothing was found')
         return res.redirect('/campgrounds')
     }
-    res.render('campgrounds/edit', { camps })
+    res.render('campgrounds/edit', { camps, pageTitle: `Editing ${camps.title}` })
 }
 
 module.exports.editCamp = async (req, res) => {

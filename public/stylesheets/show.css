@@ -1,0 +1,322 @@
+.campground-details-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 1rem;
+}
+
+.campground-info {
+    order: 2;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.campground-images {
+    order: 1;
+    position: relative;
+    width: 100%;
+}
+
+.carousel-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-images {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border: none;
+    cursor: grab;
+}
+
+.map-container:active {
+    cursor: grabbing;
+}
+
+.info-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.info-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #194524;
+    flex: 1;
+}
+
+.info-author {
+    font-size: 0.75rem;
+    color: #666;
+    text-align: right;
+    line-height: 1.4;
+}
+
+.info-item {
+    margin-bottom: 1.5rem;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #5fb586;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-value {
+    color: #333;
+    font-size: 1.1rem;
+    margin-top: 0.3rem;
+}
+
+.price-highlight {
+    font-size: 1.5rem;
+    color: #5fb586;
+    font-weight: 600;
+}
+
+.rating-display {
+    font-size: 2rem;
+    color: #5fb586;
+    letter-spacing: 4px;
+    margin: 0.5rem 0;
+}
+
+.review-count {
+    color: #888;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.review-count:hover {
+    color: #5fb586;
+    text-decoration: underline;
+}
+
+.description {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.action-buttons {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(95, 181, 134, 0.2);
+}
+
+.action-form {
+    display: contents;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.action-btn:hover::before {
+    left: 100%;
+}
+
+.edit-btn {
+    color: #0d6efd;
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+.edit-btn:hover {
+    color: white;
+    background-color: #0d6efd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.delete-btn {
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+.delete-btn:hover {
+    color: white;
+    background-color: #dc3545;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.btn-icon {
+    font-size: 1rem;
+}
+
+.btn-text {
+    font-size: 0.9rem;
+}
+
+.comments-section {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 0 1rem 2rem 1rem;
+}
+
+.comments-heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #194524;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid #5fb586;
+    padding-bottom: 1rem;
+}
+
+.review-form-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-form-heading {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #194524;
+    margin-bottom: 1.5rem;
+}
+
+.review-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #5fb586;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-author {
+    font-weight: 600;
+    color: #194524;
+    font-size: 0.95rem;
+}
+
+.review-body {
+    color: #555;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+}
+
+.go-back-button {
+    display: block;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.go-back-button a {
+    display: inline-block;
+    color: white;
+    background-color: #5fb586;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.go-back-button a:hover {
+    background-color: #3d7a5e;
+    text-decoration: none;
+}
+
+@media (min-width: 992px) {
+    .campground-details-section {
+        grid-template-columns: 1fr 2fr;
+        padding: 2rem;
+    }
+
+    .campground-info {
+        order: 1;
+    }
+
+    .campground-images {
+        order: 2;
+        padding-right: 1.5rem;
+    }
+
+    .carousel-images {
+        height: 800px;
+        min-height: 500px;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .map-container {
+        position: absolute;
+        bottom: 1rem;
+        right: 2.5rem;
+        width: 250px;
+        height: 250px;
+        margin-top: 0;
+        border: 3px solid white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+
+    .comments-section {
+        padding: 2rem;
+        margin: 0 2rem 2rem 2rem;
+    }
+}
